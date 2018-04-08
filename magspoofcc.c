@@ -4,7 +4,6 @@
  * by Samy Kamkar
  * 
  * This version has been modified by W. Wesley Weidenhamer II for CardFree, a BitCamp Hackathon project.
- * It is geared slightly more towards producing standardized card data, such as ISO cards.
  *
  * http://samy.pl/magspoof/
  *
@@ -34,8 +33,8 @@
 // consts get stored in flash as we don't adjust them
 const char* tracks[] = {
 "%?\0", // Track 1
-";419204063420026?3\0", // Track 2
-";71?\0" // Track 3
+";?\0", // Track 2
+";BLEH?\0" // Track 3
 };
 
 char revTrack1[80];
@@ -45,7 +44,7 @@ char* revTracks[] = { revTrack1, revTrack2, revTrack3 };
 
 
 const int sublen[] = {
-  48, 48, 48 };
+  32, 48, 48 };
 const int bitlen[] = {
   7, 5, 5 };
 
@@ -102,31 +101,8 @@ void playTracks()
   reverseTrack(1);
   playTrack(1);
   for(int i = 0; i < 2; i++) {
-    //reverseTrack(1);
-    //playTrack(1);
-    //reverseTrack(2);
     playTrack(2);
   }
-  //playTrack(2);
-  //playTrack(3);
-  /*if((curTrack % 4)==1)
-  {
-    //forward then reverse swipe
-    playTrack(1);
-    reverseTrack(2);
-  } else if ((curTrack % 4)==2){
-    //forward consecutive swipes
-    playTrack(1);
-    playTrack(2);
-  } else if ((curTrack % 4)==3) {
-    //reverse then forward swipe
-    reverseTrack(1);
-    playTrack(2);
-  } else {
-    //reverse consecutive swipes
-    reverseTrack(1);
-    reverseTrack(2);
-  }*/
 }
 
 // plays out a full track, calculating CRCs and LRC
@@ -289,3 +265,4 @@ void loop()
 
   interrupts();
 }
+
